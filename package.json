@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .turbo node_modules",
+    "db:generate": "pnpm prisma generate ",
+    "db:push": "pnpm prisma db push --skip-generate"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.21.1",
@@ -18,12 +21,15 @@
     "@trpc/react-query": "11.0.0-rc.477",
     "@trpc/server": "11.0.0-rc.477",
     "antd": "^5.20.5",
+    "bcrypt": "^5.1.1",
+    "jose": "^5.9.2",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
