@@ -10,14 +10,14 @@ const Page = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const login = trpc.login.loginAccount.useMutation();
+  const signUp = trpc.signUp.signUpAccount.useMutation();
 
   const onFinish = async (values: any) => {
     try {
       setIsLoading(true);
       setErrorMessage("");
 
-      const res = await login.mutateAsync({
+      const res = await signUp.mutateAsync({
         email: values.email,
         password: values.password,
       });
@@ -25,13 +25,13 @@ const Page = () => {
       if (res) {
         router.push("/dashboard");
       } else {
-        setErrorMessage("Login failed. Please try again.");
+        setErrorMessage("Sign-up failed. Please try again.");
         setIsLoading(false);
       }
     } catch (error) {
       console.error(error);
       setErrorMessage(
-        "An error occurred during Login. Please try again later."
+        "An error occurred during sign-up. Please try again later."
       );
       setIsLoading(false);
     }
@@ -48,10 +48,10 @@ const Page = () => {
       />
       <Card
         title="My Ticket"
+        bordered
         styles={{
           header: { textAlign: "center" },
         }}
-        bordered
         className="w-full max-w-lg !mx-auto !px-4"
       >
         {errorMessage && (
@@ -97,7 +97,7 @@ const Page = () => {
 
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={isLoading}>
-              Log in
+              Sign Up
             </Button>
           </Form.Item>
         </Form>
