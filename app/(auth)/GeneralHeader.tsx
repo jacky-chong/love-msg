@@ -8,6 +8,8 @@ import { Header } from "antd/es/layout/layout";
 import React, { useState } from "react";
 //import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import { deleteSession } from "@/lib/session/session";
+import { trpc } from "@/server/client";
 
 interface Props {
   collapsed: boolean;
@@ -17,6 +19,7 @@ interface Props {
 const GeneralHeader = ({ collapsed, toggleSideNav }: Props) => {
   const [username, setUsername] = useState<string>("");
   const router = useRouter();
+  const signOutMutation = trpc.signOut.signOutAccount.useMutation();
 
   //   useEffect(() => {
   //     const fetchUserName = async () => {
@@ -32,8 +35,14 @@ const GeneralHeader = ({ collapsed, toggleSideNav }: Props) => {
   //   }, []);
 
   const logout = async () => {
-    await fetch("/api/signout", { method: "post" });
-    router.refresh();
+    try {
+      const response = await signOutMutation.mutateAsync();
+      if (response.success) {
+        router.push(response.redirect); // Redirect on client-side
+      }
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
   };
 
   return (

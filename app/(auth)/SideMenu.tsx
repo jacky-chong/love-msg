@@ -81,7 +81,7 @@ const SideMenu = ({ collapsed, toggleSideNav, setTitle, setRoutes }: Props) => {
         <Image
           src="/images/next.svg"
           className="mx-auto !h-auto"
-          alt="My Ticket"
+          alt="Love Line"
           width={120}
           height={80}
         />
