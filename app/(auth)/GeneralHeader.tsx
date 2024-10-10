@@ -17,7 +17,7 @@ interface Props {
 }
 
 const GeneralHeader = ({ collapsed, toggleSideNav }: Props) => {
-  const [username, setUsername] = useState<string>("");
+  const [username, setUsername] = useState<string>("Jacky");
   const router = useRouter();
   const signOutMutation = trpc.signOut.signOutAccount.useMutation();
 
