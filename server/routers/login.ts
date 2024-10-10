@@ -12,9 +12,8 @@ export const loginRouter = router({
     .mutation(async (opts) => {
       try {
         const { email, password } = opts.input;
-        //Create User
-        const hashedPassword = await bcrypt.hash(password, 10);
 
+        //Create User
         const res = await prisma.user.findFirst({
           where: {
             email,

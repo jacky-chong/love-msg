@@ -23,15 +23,15 @@ export const middleware = async (req: NextRequest) => {
     const session = (await decrypt(cookie)) as any;
 
     // Redirect unauthed users
-    if (!session && !session?.userId) {
-      return NextResponse.redirect(new URL("/login", req.nextUrl));
-    }
+    // if (!session && !session?.userId) {
+    //   return NextResponse.redirect(new URL("/login", req.nextUrl));
+    // }
   }
 
   // if user is not signed in and the current path is not /login redirect the user to /login
-  if (req.nextUrl.pathname !== "/login" && req.nextUrl.pathname !== "/signup") {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  // if (!isProtectedRoute && req.nextUrl.pathname !== "/login" && req.nextUrl.pathname !== "/signup") {
+  //   //return NextResponse.redirect(new URL("/login", req.url));
+  // }
 
   //Render Route
   return NextResponse.next();
