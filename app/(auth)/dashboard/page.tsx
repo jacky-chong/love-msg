@@ -1,63 +1,35 @@
 "use client";
-import React from "react";
-import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Card, Tabs } from "antd";
+import Meta from "antd/es/card/Meta";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import BrithdayTab from "./BirthdayTab";
+import ConfessionTab from "./ConfessionTab";
 
-type FieldType = {
-  username?: string;
-  password?: string;
-  remember?: string;
+const App = () => {
+  const tabItems = [
+    {
+      key: "Birthday",
+      label: `🎂 Birthday`,
+      children: <BrithdayTab />,
+    },
+    {
+      key: "Confession",
+      label: `💌 Confession`,
+      children: <ConfessionTab />,
+    },
+    {
+      key: "Valentine",
+      label: `💖 Valentine`,
+      children: <>abc</>,
+    },
+  ];
+
+  return (
+    <div>
+      <Tabs defaultActiveKey="1" type="card" size={"small"} items={tabItems} />
+    </div>
+  );
 };
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const App: React.FC = () => (
-  <Form
-    name="basic"
-    labelCol={{ span: 8 }}
-    wrapperCol={{ span: 16 }}
-    style={{ maxWidth: 600 }}
-    initialValues={{ remember: true }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
-    <Form.Item<FieldType>
-      label="Username"
-      name="username"
-      rules={[{ required: true, message: "Please input your username!" }]}
-    >
-      <Input />
-    </Form.Item>
-
-    <Form.Item<FieldType>
-      label="Password"
-      name="password"
-      rules={[{ required: true, message: "Please input your password!" }]}
-    >
-      <Input.Password />
-    </Form.Item>
-
-    <Form.Item<FieldType>
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{ offset: 8, span: 16 }}
-    >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item>
-
-    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-      <Button type="primary" htmlType="submit">
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
-);
 
 export default App;

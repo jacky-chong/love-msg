@@ -47,7 +47,7 @@ const Page = () => {
         width={200}
       />
       <Card
-        title="My Ticket"
+        title="Love Line"
         styles={{
           header: { textAlign: "center" },
         }}
