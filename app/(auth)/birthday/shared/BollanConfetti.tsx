@@ -7,13 +7,15 @@ import { useEffect, useState } from "react";
 import "./test.css";
 
 type Preview = {
+    video: string;
+    audio: string;
     message: string;
 };
 
 // Dynamically import ReactPlayer to avoid SSR issues
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
-const BollanConfetti = ({ message }: Preview) => {
+const BollanConfetti = ({ video, audio, message }: Preview) => {
     const characters = Array.from(message);
     const [currentCharIndex, setCurrentCharIndex] = useState(0);
     const [isBoxOpened, setIsBoxOpened] = useState(false);
@@ -106,7 +108,7 @@ const BollanConfetti = ({ message }: Preview) => {
                 <div className="ant-card video-container">
                     <ReactPlayer
                         className="react-player"
-                        url="../images/birthday-tab/ballonConfettiExpo.mp4"
+                        url={video}
                         playing
                         muted
                         loop
@@ -116,7 +118,7 @@ const BollanConfetti = ({ message }: Preview) => {
                     />
                     <ReactPlayer
                         className="!max-h-0"
-                        url="../music/ch/just_love_you.mp3" // Replace with your audio file URL
+                        url={audio} // Replace with your audio file URL
                         playing
                         loop
                         muted={!soundOn} // Set to false if you want sound

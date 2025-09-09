@@ -9,44 +9,41 @@ import SideMenu from "./SideMenu";
 import useWindowDimensions from "@/lib/hooks/useWindowDimensions";
 
 const AuthenticatedLayout = ({ children }: { children: React.ReactNode }) => {
-  const { width } = useWindowDimensions();
-  const [collapsed, setCollapsed] = useState<boolean>(false);
-  const [routes, setRoutes] = useState<BreadcrumbProps["items"]>([]);
-  const [title, setTitle] = useState<string>("");
+    const { width } = useWindowDimensions();
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [routes, setRoutes] = useState<BreadcrumbProps["items"]>([]);
+    const [title, setTitle] = useState<string>("");
 
-  useEffect(() => {
-    if (width && width > 768) {
-      setCollapsed(false);
-    } else {
-      setCollapsed(true);
-    }
-  }, [width]);
+    useEffect(() => {
+        if (width && width > 768) {
+            setCollapsed(false);
+        } else {
+            setCollapsed(true);
+        }
+    }, [width]);
 
-  const toggleSideNav = () => {
-    setCollapsed(!collapsed);
-  };
+    const toggleSideNav = () => {
+        setCollapsed(!collapsed);
+    };
 
-  return (
-    <Layout hasSider className="h-screen">
-      <SideMenu
+    return (
+        <Layout hasSider className="h-screen">
+            {/* <SideMenu
         collapsed={collapsed}
         toggleSideNav={toggleSideNav}
         setTitle={setTitle}
         setRoutes={setRoutes}
-      />
-      <Layout>
-        <GeneralHeader
-          toggleSideNav={toggleSideNav}
-          collapsed={collapsed}
-        ></GeneralHeader>
-        <Content className="m-8 overflow-y-auto h-[100%]">
-          {/* <Breadcrumb className="!mb-2" items={routes} /> */}
-          <div className="text-lg font-semibold ">{title}</div>
-          <br />
-          {children}
-        </Content>
-      </Layout>
-    </Layout>
-  );
+      /> */}
+            <Layout>
+                {/* <GeneralHeader toggleSideNav={toggleSideNav} collapsed={collapsed}></GeneralHeader> */}
+                <Content className="m-8 overflow-y-auto h-[100%]">
+                    {/* <Breadcrumb className="!mb-2" items={routes} /> */}
+                    <div className="text-lg font-semibold ">{title}</div>
+                    <br />
+                    {children}
+                </Content>
+            </Layout>
+        </Layout>
+    );
 };
 export default AuthenticatedLayout;
