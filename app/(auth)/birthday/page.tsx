@@ -1,4 +1,5 @@
 "use client";
+import { templateContent } from "@/server/data/systemData";
 import { LinkOutlined, PlaySquareOutlined } from "@ant-design/icons";
 import { Button, Form, Image, Space } from "antd";
 import { useForm } from "antd/es/form/Form";
@@ -8,7 +9,10 @@ import { useState } from "react";
 
 const App = () => {
     const searchParams = useSearchParams();
-    const id = searchParams.get("id");
+    const id = searchParams.get("id") || "";
+
+
+    const templateData = templateContent[id];
     const templateMsg = [
         {
             key: "1",
@@ -40,7 +44,7 @@ const App = () => {
     return (
         <div className="flex flex-col gap-2">
             <h1>Wishing Birthday Template</h1>
-            <Image src="/images/birthday-tab/birthday.png" alt="" preview={false} />
+            <Image src={templateData.image} alt="" preview={false} />
             {/* <TemplateMessageBox data={templateMsg} /> */}
 
             <Form className="space-y-8" onFinish={onFinish} form={form}>

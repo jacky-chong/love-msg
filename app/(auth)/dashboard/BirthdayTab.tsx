@@ -16,7 +16,7 @@ const BirthdayTab = () => {
                     <Card
                         key={template.id}
                         hoverable
-                        style={{ width: 180 }}
+                        style={{ width: 160 }}
                         cover={
                             <Image alt="example" width={100} height={100} src={template.picture} />
                         }

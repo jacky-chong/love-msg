@@ -24,7 +24,7 @@ const App = () => {
 
     return (
         <div>
-            <Tabs defaultActiveKey="1" type="card" size={"small"} items={tabItems} />
+            <Tabs defaultActiveKey="1" type="card" size={"small"} items={tabItems}  />
         </div>
     );
 };
